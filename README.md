@@ -45,7 +45,7 @@ To create a new topic with default values, run the following command:
 kafka-topics.sh --create --topic my_topic_name --bootstrap-server localhost:9092
 ```
 
-Replace **my_topic_name** with the name you want for your topic.
+Replace <span style="color:green">**my_topic_name**</span> with the name you want for your topic.
 
 - partitions=0
 - replication-factor=1
@@ -55,7 +55,7 @@ To create a new topic with partitions and replications, run the following comman
 ```bash
 kafka-topics.sh --create --topic my_topic_name --bootstrap-server localhost:9092 --partitions 3 --replication-factor 3
 ```
-Replace **my_topic_name** with the name you want for your topic.
+Replace <span style="color:green">**my_topic_name**</span> with the name you want for your topic.
 
 - partitions=3
 - replication-factor=3
@@ -75,7 +75,7 @@ To describe a specific topic, run the following command:
 ```bash
 kafka-topics.sh --describe --topic my_topic_name --bootstrap-server localhost:9092
 ```
-Replace **my_topic_name** with the name of the topic you want to describe.
+Replace <span style="color:green">**my_topic_name**</span> with the name of the topic you want to describe.
 
 # Increase Partitions in a Kafka Topic
 
@@ -84,7 +84,7 @@ To increase the number of partitions for a specific topic, run the following com
 ```shell
 kafka-topics.sh --alter --topic my_topic_name --bootstrap-server localhost:9092 --partitions new_partition_count
 ```
-Replace **my_topic_name** with the name of the topic, and **new_partition_count** with the new number of partitions.
+Replace <span style="color:green">**my_topic_name**</span> with the name of the topic, and <span style="color:green">**new_partition_count**</span> with the new number of partitions.
 
 # Delete a Kafka Topic
 
@@ -93,4 +93,4 @@ To delete a topic, run the following command:
 ```shell
 kafka-topics.sh --delete --topic my_topic_name --bootstrap-server localhost:9092
 ```
-Replace **my_topic_name** with the name of the topic you wish to delete.
+Replace <span style="color:green">**my_topic_name**</span> with the name of the topic you wish to delete.
