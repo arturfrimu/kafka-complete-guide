@@ -42,6 +42,10 @@
 - [Show both key and values in the output](#show-both-key-and-values-in-the-output)
 - [Consumer group](#consumer-group)
 - [List Consumer groups](#list-consumer-groups)
+- [Describe consumer group](#describe-consumer-group)
+- [Reset offsets](#reset-offsets)
+  - [Preview with --dry-run](#reset-offsets)
+  - [Execution with --execute](#reset-offsets)
 
 ---
 
@@ -187,4 +191,35 @@ Replace <span style="color:green">my_topic_name</span> with the name of your Kaf
 
 ```shell
 kafka-consumer-groups --bootstrap-server localhost:9092 --list
+```
+
+# Describe consumer group
+
+```shell
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-app --describe
+```
+
+#  Reset offsets
+1. Preview with --dry-run
+
+In this example, we use --dry-run to preview what will happen if we reset the offsets for all partitions of the topic my_topic to the most recent message (latest) for the consumer group my-first-app. This will not actually apply the changes.
+
+```shell
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-app --topic my_topic_name --reset-offsets --to-latest --dry-run
+```
+
+**_--to-latest_**
+
+2. Application with --execute
+
+In this example, we remove the --dry-run flag and add --execute to actually apply the offset reset. We will set the offsets to the earliest available record (earliest) for the consumer group my-first-app and the topic my_topic.
+
+```shell
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-app --topic my_topic --reset-offsets --to-earliest --execute
+```
+
+**_--to-earliest_**
+
+```text
+Using the --execute flag will actually apply the changes and should be done cautiously, after you've verified what changes will be made using --dry-run.
 ```
