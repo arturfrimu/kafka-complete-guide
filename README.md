@@ -41,6 +41,7 @@
 - [Consume from the beginning of the Topic](#consume-from-the-beginning-of-the-topic)
 - [Show both key and values in the output](#show-both-key-and-values-in-the-output)
 - [Consumer group](#consumer-group)
+- [List Consumer groups](#list-consumer-groups)
 
 ---
 
@@ -181,3 +182,9 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_nam
 ```
 
 Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic and <span style="color:green">my-first-app</span> with you consumer group name
+
+# List Consumer groups
+
+```shell
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+```
