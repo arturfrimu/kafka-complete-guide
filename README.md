@@ -37,6 +37,8 @@
 - [Produce a Message Without Keys](#produce-a-message-without-keys)
 - [Produce a Message With Keys](#produce-a-message-with-keys)
 - [Produce a Message With Acknowledgements](#produce-a-message-with-acknowledgements)
+- [Consume from the beginning of the Topic](#consume-from-the-beginning-of-the-topic)
+- [Show both key and values in the output](#show-both-key-and-values-in-the-output)
 
 ---
 
@@ -100,7 +102,8 @@ Replace <span style="color:green">**my_topic_name**</span> with the name of the 
 
 # Produce a Message Without Keys
 
-To produce a message without keys to a Kafka topic, use the following command:
+When producing messages without specifying a key, the messages will be sent in a round-robin fashion to all available partitions in the topic.
+To produce a message without a key, use the following command:
 
 ```bash
 echo "This is my message" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name
@@ -132,7 +135,9 @@ Here is an example:
 echo "This is a message with acks" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --acks 1
 ```
 
-In this example, replace <span style="color:red">my_topic_name</span> with the name of your Kafka topic. 
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic
+
+In this example, replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic. 
 The --acks 1 ensures that only the leader broker will acknowledge the message.
 
 To require acknowledgements from all in-sync replicas, you can use --acks all like so:
@@ -140,3 +145,23 @@ To require acknowledgements from all in-sync replicas, you can use --acks all li
 ```shell
 echo "This is a message with acks from all in-sync replicas" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --acks all
 ```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic and <span style="color:green">all</span> with the acknowledgement you want to use.
+
+# Consume from the beginning of the Topic
+
+To consume messages from the beginning of the topic, you can run:
+
+```shell
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_name --from-beginning --property print.key=true --property print.partition=true --property key.separator="  :  "
+```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic
+
+# Show both key and values in the output
+
+```shell
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_name --property print.key=true --property print.partition=true --property key.separator="  :  "
+```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic
