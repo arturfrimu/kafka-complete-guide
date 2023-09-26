@@ -35,10 +35,12 @@
 - [Increase Partitions in a Kafka Topic](#increase-partitions-in-a-kafka-topic)
 - [Delete a Kafka Topic](#delete-a-kafka-topic)
 - [Produce a Message Without Keys](#produce-a-message-without-keys)
+- [RoundRobinPartitioner](#roundrobinpartitioner)
 - [Produce a Message With Keys](#produce-a-message-with-keys)
 - [Produce a Message With Acknowledgements](#produce-a-message-with-acknowledgements)
 - [Consume from the beginning of the Topic](#consume-from-the-beginning-of-the-topic)
 - [Show both key and values in the output](#show-both-key-and-values-in-the-output)
+- [Consumer group](#consumer-group)
 
 ---
 
@@ -58,7 +60,7 @@ Replace <span style="color:green">**my_topic_name**</span> with the name you wan
 To create a new topic with partitions and replications, run the following command:
 
 ```bash
-kafka-topics.sh --create --topic my_topic_name --bootstrap-server localhost:9092 --partitions 3 --replication-factor 3
+kafka-topics.sh --create --topic my_topic_name --bootstrap-server localhost:9092 --partitions 6
 ```
 Replace <span style="color:green">**my_topic_name**</span> with the name you want for your topic.
 
@@ -107,6 +109,12 @@ To produce a message without a key, use the following command:
 
 ```bash
 echo "This is my message" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name
+```
+
+# RoundRobinPartitioner
+
+```shell
+kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --producer-property partitioner.class=org.apache.kafka.clients.producer.RoundRobinPartitioner
 ```
 
 Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic.
@@ -165,3 +173,11 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_nam
 ```
 
 Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic
+
+# Consumer group
+
+```shell
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_name --group my-first-app --property print.key=true --property print.partition=true --property key.separator="  :  "
+```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic and <span style="color:green">my-first-app</span> with you consumer group name
