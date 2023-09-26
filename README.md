@@ -34,6 +34,9 @@
 - [Describe Kafka Topics](#describe-kafka-topics)
 - [Increase Partitions in a Kafka Topic](#increase-partitions-in-a-kafka-topic)
 - [Delete a Kafka Topic](#delete-a-kafka-topic)
+- [Produce a Message Without Keys](#produce-a-message-without-keys)
+- [Produce a Message With Keys](#produce-a-message-with-keys)
+- [Produce a Message With Acknowledgements](#produce-a-message-with-acknowledgements)
 
 ---
 
@@ -94,3 +97,46 @@ To delete a topic, run the following command:
 kafka-topics.sh --delete --topic my_topic_name --bootstrap-server localhost:9092
 ```
 Replace <span style="color:green">**my_topic_name**</span> with the name of the topic you wish to delete.
+
+# Produce a Message Without Keys
+
+To produce a message without keys to a Kafka topic, use the following command:
+
+```bash
+echo "This is my message" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name
+```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic.
+
+# Produce a Message With Keys
+
+If you want to produce messages with keys, you need to provide the key separator, which is usually a tab character. Here's how you can do it:
+
+```shell
+echo -e "my_key\tThis is my message with a key" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --property "parse.key=true" --property "key.separator=\t"
+```
+
+Replace <span style="color:green">my_topic_name</span> with the name of your Kafka topic and <span style="color:green">my_key</span> with the key you want to use.
+
+## Produce a Message With Acknowledgements
+
+Kafka allows you to specify the level of acknowledgement you desire from the broker for produced messages. You can use the `--acks` flag to set this level when producing messages. The available options are:
+
+- `0`: No acknowledgements. The producer takes no responsibility for message loss.
+- `1`: Only the leader broker will acknowledge.
+- `all` or `-1`: The leader and all its replicas will acknowledge.
+
+Here is an example:
+
+```bash
+echo "This is a message with acks" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --acks 1
+```
+
+In this example, replace <span style="color:red">my_topic_name</span> with the name of your Kafka topic. 
+The --acks 1 ensures that only the leader broker will acknowledge the message.
+
+To require acknowledgements from all in-sync replicas, you can use --acks all like so:
+
+```shell
+echo "This is a message with acks from all in-sync replicas" | kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic_name --acks all
+```
