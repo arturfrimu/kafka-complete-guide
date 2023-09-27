@@ -37,6 +37,8 @@ public class ProducerDemoWithCallback {
                                 "Offset: " + metadata.offset() + "\n",
                                 "Timestamp: " + metadata.timestamp() + "\n"
                         );
+                    } else {
+                        log.error("Error while producing", exception);
                     }
                 }
             });
