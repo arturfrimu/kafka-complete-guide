@@ -18,7 +18,7 @@ public class ProducerDemo {
         properties.setProperty("value.serializer", StreamSerializer.class.getName());
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo.topic", "hello world");
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo_topic", "hello world");
 
             producer.send(producerRecord);
 
