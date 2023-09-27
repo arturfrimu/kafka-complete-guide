@@ -28,6 +28,16 @@ public class ProducerDemoWithCallback {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
                     // executes every time a record successfully sent or an exception is thrown
+                    if (exception == null) {
+                        // the record was successfully sent
+                        log.info(
+                                "Received new metadata\n" +
+                                "Topic: " + metadata.topic() + "\n",
+                                "Partition: " + metadata.partition() + "\n",
+                                "Offset: " + metadata.offset() + "\n",
+                                "Timestamp: " + metadata.timestamp() + "\n"
+                        );
+                    }
                 }
             });
 
