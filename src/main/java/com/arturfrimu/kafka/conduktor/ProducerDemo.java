@@ -12,6 +12,8 @@ import java.util.Properties;
 @Component
 public class ProducerDemo {
     public static void main(String[] args) {
+        log.info("I'm a simple kafka producer");
+
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
         properties.setProperty("key.serializer", StringSerializer.class.getName());
