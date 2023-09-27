@@ -19,6 +19,8 @@ public class ProducerDemo {
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo.topic", "hello world");
+
+            producer.send(producerRecord);
         }
     }
 }
