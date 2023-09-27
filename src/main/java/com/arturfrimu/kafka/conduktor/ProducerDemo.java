@@ -3,6 +3,7 @@ package com.arturfrimu.kafka.conduktor;
 import com.fasterxml.jackson.datatype.jdk8.StreamSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
@@ -17,7 +18,7 @@ public class ProducerDemo {
         properties.setProperty("value.serializer", StreamSerializer.class.getName());
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
-
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo.topic", "hello world");
         }
     }
 }
