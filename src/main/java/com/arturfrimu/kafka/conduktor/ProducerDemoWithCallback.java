@@ -24,7 +24,12 @@ public class ProducerDemoWithCallback {
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo_topic", "I'm a kafka producer with callback");
 
-            producer.send(producerRecord);
+            producer.send(producerRecord, new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata metadata, Exception exception) {
+                    // executes every time a record successfully sent or an exception is thrown
+                }
+            });
 
             producer.flush(); // tell the producer to send all data and block until done -- synchronous
         }
