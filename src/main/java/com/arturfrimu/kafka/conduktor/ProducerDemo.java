@@ -2,6 +2,7 @@ package com.arturfrimu.kafka.conduktor;
 
 import com.fasterxml.jackson.datatype.jdk8.StreamSerializer;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
@@ -14,5 +15,9 @@ public class ProducerDemo {
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
         properties.setProperty("key.serializer", StreamSerializer.class.getName());
         properties.setProperty("value.serializer", StreamSerializer.class.getName());
+
+        try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
+
+        }
     }
 }
