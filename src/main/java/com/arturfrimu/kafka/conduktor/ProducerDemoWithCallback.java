@@ -1,10 +1,7 @@
 package com.arturfrimu.kafka.conduktor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +19,8 @@ public class ProducerDemoWithCallback {
         properties.setProperty("value.serializer", StringSerializer.class.getName());
 
         properties.setProperty("batch.size", "400");
+
+        // properties.setProperty("partitioner.class", RoundRobinPartitioner.class.getName());
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
 
