@@ -1,4 +1,4 @@
-package com.arturfrimu.kafka.configuration;
+package com.arturfrimu.kafka.amigo.configuration;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;

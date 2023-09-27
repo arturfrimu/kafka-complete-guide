@@ -1,4 +1,4 @@
-package com.arturfrimu.kafka.configuration;
+package com.arturfrimu.kafka.amigo.configuration;
 
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

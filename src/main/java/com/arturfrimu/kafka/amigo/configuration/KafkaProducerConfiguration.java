@@ -1,4 +1,4 @@
-package com.arturfrimu.kafka.configuration;
+package com.arturfrimu.kafka.amigo.configuration;
 
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_
 
 @Configuration
 public class KafkaProducerConfiguration {
+
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 

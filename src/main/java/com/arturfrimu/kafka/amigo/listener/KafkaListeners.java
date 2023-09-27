@@ -1,4 +1,4 @@
-package com.arturfrimu.kafka.listener;
+package com.arturfrimu.kafka.amigo.listener;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
