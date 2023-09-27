@@ -21,6 +21,8 @@ public class ProducerDemo {
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo.topic", "hello world");
 
             producer.send(producerRecord);
+
+            producer.flush(); // tell the producer to send all data and block until done -- synchronous
         }
     }
 }
