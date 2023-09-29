@@ -24,8 +24,8 @@ public class ProducerDemoWithCallback {
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
 
-            for (int j = 1; j <= 10; j++) {
-                for (int i = 1; i <= 30; i++) {
+            for (int j = 1; j <= 4; j++) {
+                for (int i = 1; i <= 25; i++) {
                     ProducerRecord<String, String> producerRecord = new ProducerRecord<>("demo_topic", "Nr: {%s : %s}"
                             .formatted(j, i));
                     producer.send(producerRecord, new Callback() {

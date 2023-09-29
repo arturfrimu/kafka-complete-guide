@@ -58,9 +58,7 @@ public class ConsumerDemoWithShutdown {
 
             // pool for data
             while (true) {
-                log.info("Pooling");
-
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(5000));
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
 
                 records.forEach(record -> log.info("Key: %s, Value: %s, Partition: %s, Offset: %s".formatted(
                         record.key(),
