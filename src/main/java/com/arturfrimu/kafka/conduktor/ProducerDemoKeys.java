@@ -20,8 +20,8 @@ public class ProducerDemoKeys {
         properties.setProperty("value.serializer", StringSerializer.class.getName());
 
         try (KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 1; i <= 5; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int i = 1; i <= 6; i++) {
 
                     String topic = "demo_topic";
                     String key = "Key_%s".formatted(i);
@@ -36,7 +36,7 @@ public class ProducerDemoKeys {
                             log.error("Error while producing", exception);
                         }
                     });
-                    sleep(2000);
+                    sleep(1000);
                 }
             }
 
