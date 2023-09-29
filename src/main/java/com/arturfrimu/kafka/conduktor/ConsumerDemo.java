@@ -8,6 +8,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Properties;
 
 @Slf4j
@@ -29,5 +30,9 @@ public class ConsumerDemo {
 
         // create a consumer
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+
+        // subscribe to a topic
+        String topic = "demo_topic";
+        consumer.subscribe(List.of(topic));
     }
 }
