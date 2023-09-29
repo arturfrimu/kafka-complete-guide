@@ -21,5 +21,7 @@ public class ConsumerDemo {
         // create consumer config
         properties.setProperty("key.deserializer", StringDeserializer.class.getName());
         properties.setProperty("value.deserializer", StringDeserializer.class.getName());
+
+        properties.setProperty("group.id", "my-java-application");
     }
 }
