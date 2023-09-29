@@ -23,5 +23,7 @@ public class ConsumerDemo {
         properties.setProperty("value.deserializer", StringDeserializer.class.getName());
 
         properties.setProperty("group.id", "my-java-application");
+
+        properties.setProperty("auto.offset.reset", "none/earliest/latest");
     }
 }
