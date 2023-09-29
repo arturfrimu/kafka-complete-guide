@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- Define the appender for console output -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.arturfrimu.kafka.conduktor" level="INFO">
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <!-- Define the logging level for the application -->
+    <logger name="com.arturfrimu" level="INFO" />
 
-    <root level="OFF">
-        <appender-ref ref="STDOUT"/>
+    <!-- Attach the STDOUT appender to root, to capture all log entries -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
