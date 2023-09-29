@@ -1,6 +1,7 @@
 package com.arturfrimu.kafka.conduktor;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -24,6 +25,9 @@ public class ConsumerDemo {
 
         properties.setProperty("group.id", "my-java-application");
 
-        properties.setProperty("auto.offset.reset", "none/earliest/latest");
+        properties.setProperty("auto.offset.reset", "earliest"); //   none | earliest | latest
+
+        // create a consumer
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
     }
 }
