@@ -39,21 +39,7 @@ public class ConsumerDemoCooperative {
         final Thread mainThread = Thread.currentThread();
 
         // adding the shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                log.info("Detected a shutdown, let's exit by calling consumer.wakeup()....");
-
-                consumer.wakeup();
-
-                // join the main thread to allow the execution of the code in the main thread
-                try {
-                    mainThread.join();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        addingTheShutdownHook(consumer, mainThread);
 
         try {
             // subscribe to a topic
@@ -78,5 +64,23 @@ public class ConsumerDemoCooperative {
             consumer.close(); // close the consumer, this will also commit offsets
             log.info("The consumer is now gracefully shut down");
         }
+    }
+
+    private static void addingTheShutdownHook(KafkaConsumer<String, String> consumer, Thread mainThread) {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                log.info("Detected a shutdown, let's exit by calling consumer.wakeup()....");
+
+                consumer.wakeup();
+
+                // join the main thread to allow the execution of the code in the main thread
+                try {
+                    mainThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 }
