@@ -28,5 +28,8 @@ public class WikimediaChangesProducer {
         EventSource.Builder builder = new EventSource.Builder(eventHandler, URI.create(url));
 
         EventSource eventSource = builder.build();
+
+        // start the producer in another thread
+        eventSource.start();
     }
 }
