@@ -26,5 +26,7 @@ public class WikimediaChangesProducer {
         String url = "https://stream.wikimedia.org/v2/stream/recentchange";
 
         EventSource.Builder builder = new EventSource.Builder(eventHandler, URI.create(url));
+
+        EventSource eventSource = builder.build();
     }
 }
