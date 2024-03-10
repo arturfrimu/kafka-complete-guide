@@ -1,3 +1,15 @@
+# Gradle installation
+
+```shell
+brew install gradle
+```
+
+1. For gradle-8.0-bin.zip is used java 17
+```text
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-bin.zip
+Preferences -> Build -> Build Tools -> Gradle -> Gradle JDK Version 17
+```
+
 # Kafka Installation Guide with Homebrew
 
 ## Steps
